@@ -9,10 +9,17 @@ namespace Instem.Movies.Data
 {
     public class DataLoader
     {
-        public List<Movie> Load(string dataLocation)
+        private readonly string _dataLocation;
+
+        public DataLoader(string dataLocation)
+        {
+            _dataLocation = dataLocation;
+        }
+
+        public List<Movie> Load()
         {
             var list = new List<Movie>();
-            using(var sr = new StreamReader(dataLocation))
+            using(var sr = new StreamReader(_dataLocation))
             {
                 var data = sr.ReadToEnd();
                 var options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
@@ -21,10 +28,10 @@ namespace Instem.Movies.Data
             return list;
         }
 
-        public List<Movie> LoadHomePageSelection(string dataLocation)
+        public List<Movie> LoadHomePageSelection()
         {
             var list = new List<Movie>();
-            using(var sr = new StreamReader(dataLocation))
+            using(var sr = new StreamReader(_dataLocation))
             {
                 var data = sr.ReadToEnd();
                 var options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
@@ -33,9 +40,9 @@ namespace Instem.Movies.Data
             return list;
         }
 
-        public List<Movie> SearchResults(string dataLocation, string criteria)
+        public List<Movie> SearchResults(string criteria)
         {
-            var list = Load(dataLocation);
+            var list = Load();
             var result = new List<Movie>();
 
             if (int.TryParse(criteria, out var year))

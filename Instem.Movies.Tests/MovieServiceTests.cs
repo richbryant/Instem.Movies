@@ -13,8 +13,8 @@ namespace Instem.Movies.Tests
         public void LoadDataFromJsonFileTest()
         {
             var dataLocation = @"TestData\moviedata.json";
-            var loaderUnderTest = new DataLoader();
-            var loadedData = loaderUnderTest.Load(dataLocation);
+            var loaderUnderTest = new DataLoader(dataLocation);
+            var loadedData = loaderUnderTest.Load();
 
             loadedData.Should().BeOfType(typeof(List<Movie>));
             loadedData.Should().NotBeEmpty();
@@ -25,8 +25,8 @@ namespace Instem.Movies.Tests
         public void Homepage_LoadFourMoviesByDescendingYear()
         {
             var dataLocation = @"TestData\moviedata.json";
-            var loaderUnderTest = new DataLoader();
-            var loadedData = loaderUnderTest.LoadHomePageSelection(dataLocation);
+            var loaderUnderTest = new DataLoader(dataLocation);
+            var loadedData = loaderUnderTest.LoadHomePageSelection();
 
             loadedData.Should().BeOfType(typeof(List<Movie>));
             loadedData.Count.Should().Be(4);
@@ -41,8 +41,8 @@ namespace Instem.Movies.Tests
         public void SearchReturnsData(string criteria)
         {
             var dataLocation = @"TestData\moviedata.json";
-            var loaderUnderTest = new DataLoader();
-            var loadedData = loaderUnderTest.SearchResults(dataLocation, criteria);
+            var loaderUnderTest = new DataLoader(dataLocation);
+            var loadedData = loaderUnderTest.SearchResults(criteria);
 
             loadedData.Should().BeOfType(typeof(List<Movie>));
             loadedData.Should().NotBeEmpty();
