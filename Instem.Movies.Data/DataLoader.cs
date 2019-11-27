@@ -15,7 +15,8 @@ namespace Instem.Movies.Data
             using(var sr = new StreamReader(dataLocation))
             {
                 var data = sr.ReadToEnd();
-                list.AddRange(JsonSerializer.Deserialize<List<Movie>>(data));
+                var options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
+                list.AddRange(JsonSerializer.Deserialize<List<Movie>>(data, options));
             }
             return list;
         }
@@ -26,9 +27,37 @@ namespace Instem.Movies.Data
             using(var sr = new StreamReader(dataLocation))
             {
                 var data = sr.ReadToEnd();
-                list.AddRange((JsonSerializer.Deserialize<List<Movie>>(data)).OrderByDescending(y => y.Year).Take(4));
+                var options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
+                list.AddRange((JsonSerializer.Deserialize<List<Movie>>(data, options)).OrderByDescending(y => y.Year).Take(4));
             }
             return list;
+        }
+
+        public List<Movie> SearchResults(string dataLocation, string criteria)
+        {
+            var list = Load(dataLocation);
+            var result = new List<Movie>();
+
+            if (int.TryParse(criteria, out var year))
+            {
+                var searchYear = list.Where(m => m.Year == year).ToList();
+                result.AddRange(searchYear);
+            }
+
+            var searchTitle = list.Where(m => m.Title.Contains(criteria)).ToList();
+            var searchDirector = list.Where(m => m.Info.Directors.Any(d => d.Contains(criteria))).ToList();
+            var searchGenres = list.Where(m => m.Info.Genres.Any(g => g.Contains(criteria))).ToList();
+            var searchActors = list.Where(m => m.Info.Actors.Any(a => a.Contains(criteria))).ToList();
+            var searchPlot = list.Where(m => m.Info.Plot.Contains(criteria)).ToList();
+
+            
+            result.AddRange(searchTitle);
+            result.AddRange(searchDirector);
+            result.AddRange(searchGenres);
+            result.AddRange(searchActors);
+            result.AddRange(searchPlot);
+
+            return result;
         }
     }
 }
