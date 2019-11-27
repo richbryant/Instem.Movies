@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instem.Movies", "Instem.Mov
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instem.Movies.Tests", "Instem.Movies.Tests\Instem.Movies.Tests.csproj", "{250E94CC-1B44-464B-841E-4AED36C3483A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instem.Movies.RestApi", "Instem.Movies.RestApi\Instem.Movies.RestApi.csproj", "{A525F96C-E377-4881-B04F-F1B0396BD2D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{250E94CC-1B44-464B-841E-4AED36C3483A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{250E94CC-1B44-464B-841E-4AED36C3483A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{250E94CC-1B44-464B-841E-4AED36C3483A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A525F96C-E377-4881-B04F-F1B0396BD2D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A525F96C-E377-4881-B04F-F1B0396BD2D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A525F96C-E377-4881-B04F-F1B0396BD2D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A525F96C-E377-4881-B04F-F1B0396BD2D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
