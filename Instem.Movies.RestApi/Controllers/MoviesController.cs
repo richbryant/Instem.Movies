@@ -13,14 +13,13 @@ namespace Instem.Movies.RestApi.Controllers
     public class MoviesController : ControllerBase
     {
         private readonly ILogger<MoviesController> _logger;
-        private readonly string _dataLocation;
         private readonly DataLoader _dataLoader;
 
         public MoviesController(ILogger<MoviesController> logger, IHostEnvironment environment)
         {
             _logger = logger;
-            _dataLocation = environment.ContentRootPath + "/moviedata.json";
-            _dataLoader = new DataLoader(_dataLocation);
+            var dataLocation = environment.ContentRootPath + "/moviedata.json";
+            _dataLoader = new DataLoader(dataLocation);
         }
 
         [HttpGet]
