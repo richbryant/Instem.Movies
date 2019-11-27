@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Instem.Movies.Data;
 using Instem.Movies.Shared.Model;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -30,7 +29,7 @@ namespace Instem.Movies.RestApi.Controllers
             return await _dataLoader.LoadHomePageSelectionAsync();
         }
 
-        [HttpGet]
+        [HttpGet("{criteria}")]
         public async Task<List<Movie>> Get(string criteria)
         {
             return await _dataLoader.SearchResultsAsync(criteria);
