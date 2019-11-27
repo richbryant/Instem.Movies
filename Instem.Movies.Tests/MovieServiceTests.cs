@@ -32,20 +32,21 @@ namespace Instem.Movies.Tests
             loadedData.Count.Should().Be(4);
         }
 
-        [TestCase("1982")]
-        [TestCase("Hunger")]
-        [TestCase("Action")]
-        [TestCase("Scott")]
-        [TestCase("Ford")]
-        [TestCase("replicants")]
-        public void SearchReturnsData(string criteria)
+        [TestCase("1982", 0)]
+        [TestCase("Hunger", 0)]
+        [TestCase("Action", 0)]
+        [TestCase("Scott", 0)]
+        [TestCase("Ford", 0)]
+        [TestCase("replicants", 0)]
+        [TestCase("Cucumber", 1)]
+        public void SearchReturnsData(string criteria, int countResult)
         {
             var dataLocation = @"TestData\moviedata.json";
             var loaderUnderTest = new DataLoader(dataLocation);
             var loadedData = loaderUnderTest.SearchResults(criteria);
 
             loadedData.Should().BeOfType(typeof(List<Movie>));
-            loadedData.Should().NotBeEmpty();
+            (0 - loadedData.Count).Should().BeLessThan(countResult);
         }
     }
 }
