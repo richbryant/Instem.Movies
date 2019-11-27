@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
+using Instem.Movies.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +13,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Instem.Movies.Data;
+using Refit;
 
 namespace Instem.Movies
 {
@@ -34,6 +35,9 @@ namespace Instem.Movies
             services.AddBlazorise(o => o.ChangeTextOnKeyPress = true)
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();
+
+            services.AddRefitClient<IMovieDataService>()
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:44328/api"));
             //services.AddSingleton<WeatherForecastService>();
         }
 

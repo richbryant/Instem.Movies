@@ -1,5 +1,49 @@
 ﻿@page "/"
+@using Instem.Movies.Data
+@using Instem.Movies.Shared.Model
+
+@inject IMovieDataService MovieData
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+@if (!_movies.Any())
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @foreach (var item in _movies)
+    {
+        <Card>
+            <CardImage Source="@item.Info.ImageUrl" Alt="MovieImage"/>
+            <CardBody>
+                <CardTitle Size="5">@item.Title</CardTitle>
+                <CardSubtitle>Released : @item.Year, Director(s) : 
+                @{
+                    if (item.Info.Directors.Any())
+                    {
+                        var dirs = string.Join(", ", item.Info.Directors);
+                        <span>@dirs</span>
+                    }
+                }
+                </CardSubtitle>
+
+            </CardBody>
+
+        </Card>
+    }
+}
+
+
+
+@code {
+    readonly List<Movie> _movies = new List<Movie>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var m = await MovieData.GetHomePageAsync();
+        _movies.AddRange(m);
+    }
+}
