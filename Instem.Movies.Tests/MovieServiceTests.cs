@@ -11,7 +11,7 @@ namespace Instem.Movies.Tests
         [Test]
         public void LoadDataFromJsonFileTest()
         {
-            var dataLocation = @"DataLocation";
+            var dataLocation = @"TestData\moviedata.json";
             var loaderUnderTest = new DataLoader();
             var loadedData = loaderUnderTest.Load(dataLocation);
 

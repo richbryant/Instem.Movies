@@ -1,4 +1,6 @@
-﻿namespace Instem.Movies.Shared.Model
+﻿using System;
+
+namespace Instem.Movies.Shared.Model
 {
     public class Info
     {
