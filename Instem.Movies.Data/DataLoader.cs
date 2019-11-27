@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
 using Instem.Movies.Shared.Model;
 
 
@@ -37,6 +38,11 @@ namespace Instem.Movies.Data
             return list;
         }
 
+        public async Task<List<Movie>> LoadHomePageSelectionAsync()
+        {
+            return await Task.FromResult(LoadHomePageSelection());
+        }
+
         public List<Movie> SearchResults(string criteria)
         {
             var list = Load();
@@ -62,6 +68,11 @@ namespace Instem.Movies.Data
             result.AddRange(searchPlot);
 
             return result;
+        }
+
+        public async Task<List<Movie>> SearchResultsAsync(string criteria)
+        {
+            return await Task.FromResult(SearchResults(criteria));
         }
     }
 }
