@@ -10,10 +10,12 @@ namespace Instem.Movies.Data
     public class DataLoader
     {
         private readonly string _dataLocation;
+        private readonly JsonSerializerOptions _options;
 
         public DataLoader(string dataLocation)
         {
             _dataLocation = dataLocation;
+            _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         }
 
         public List<Movie> Load()
@@ -22,8 +24,7 @@ namespace Instem.Movies.Data
             using(var sr = new StreamReader(_dataLocation))
             {
                 var data = sr.ReadToEnd();
-                var options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
-                list.AddRange(JsonSerializer.Deserialize<List<Movie>>(data, options));
+                list.AddRange(JsonSerializer.Deserialize<List<Movie>>(data, _options));
             }
             return list;
         }
