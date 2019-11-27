@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Instem.Movies.Data\Instem.Movies.Data.csproj" />
     <ProjectReference Include="..\Instem.Movies.Shared\Instem.Movies.Shared.csproj" />
   </ItemGroup>
 

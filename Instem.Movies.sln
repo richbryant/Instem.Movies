@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instem.Movies.RestApi", "In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instem.Movies.Shared", "Instem.Movies.Shared\Instem.Movies.Shared.csproj", "{B68780FB-8666-464E-8D89-9584869E6DC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instem.Movies.Data", "Instem.Movies.Data\Instem.Movies.Data.csproj", "{2D6A6D52-268F-4629-9C5D-771A7F0F56C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B68780FB-8666-464E-8D89-9584869E6DC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B68780FB-8666-464E-8D89-9584869E6DC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B68780FB-8666-464E-8D89-9584869E6DC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D6A6D52-268F-4629-9C5D-771A7F0F56C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D6A6D52-268F-4629-9C5D-771A7F0F56C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D6A6D52-268F-4629-9C5D-771A7F0F56C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D6A6D52-268F-4629-9C5D-771A7F0F56C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
