@@ -26,4 +26,8 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Instem.Movies.Shared\Instem.Movies.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

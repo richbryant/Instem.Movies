@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Instem.Movies.Data
+﻿namespace Instem.Movies.Shared.Model
 {
     public class Info
     {
