@@ -31,12 +31,8 @@ namespace Instem.Movies.Data
         public List<Movie> LoadHomePageSelection()
         {
             var list = new List<Movie>();
-            using(var sr = new StreamReader(_dataLocation))
-            {
-                var data = sr.ReadToEnd();
-                var options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
-                list.AddRange((JsonSerializer.Deserialize<List<Movie>>(data, options)).OrderByDescending(y => y.Year).Take(4));
-            }
+            var movies = Load(); 
+            list.AddRange(movies.OrderByDescending(y => y.Year).Take(4));
             return list;
         }
 
