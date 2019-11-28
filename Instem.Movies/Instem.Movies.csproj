@@ -1,7 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazorise.Bootstrap" Version="0.8.6.4" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.8.6.4" />
+    <PackageReference Include="LanguageExt.Core" Version="3.3.40" />
+    <PackageReference Include="Refit" Version="5.0.23" />
+    <PackageReference Include="Refit.HttpClientFactory" Version="5.0.23" />
+    <PackageReference Include="System.Text.Json" Version="4.7.0-preview3.19551.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Instem.Movies.Shared\Instem.Movies.Shared.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Instem.Movies.Data\Instem.Movies.Data.csproj" />
+    <ProjectReference Include="..\Instem.Movies.Shared\Instem.Movies.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="moviedata.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
