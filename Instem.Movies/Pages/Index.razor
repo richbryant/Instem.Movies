@@ -26,7 +26,7 @@ else
     <br />
     @foreach (var item in _movies)
     {
-        <Card>
+        <Card ColumnSize="ColumnSize.Is4.OnDesktop.IsThird.OnTablet.IsFull.OnMobile">
             <CardImage Source="@item.Info.ImageUrl" Alt="MovieImage"/>
             <CardBody>
                 <CardTitle Size="5">@item.Title</CardTitle>
