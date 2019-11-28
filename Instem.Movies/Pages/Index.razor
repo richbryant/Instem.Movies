@@ -24,31 +24,36 @@ else
     </Addons>
     <br />
     <br />
-    @foreach (var item in _movies)
-    {
-        <Card ColumnSize="ColumnSize.Is4.OnDesktop.IsThird.OnTablet.IsFull.OnMobile">
-            <CardImage Source="@item.Info.ImageUrl" Alt="MovieImage"/>
-            <CardBody>
-                <CardTitle Size="5">@item.Title</CardTitle>
-                <CardSubtitle>Released : @item.Year
-                @{
-                    if (item.Info.Directors.Any())
-                    {
-                        var dirs = string.Join(", ", item.Info.Directors);
-                        <span>, Director(s) : @dirs</span>
-                    }
-                    if (item.Info.Actors.Any())
-                    {
-                        var acts = string.Join(", ", item.Info.Actors);
-                        <span>, Starring : @acts</span>
-                    }
-                }
-                </CardSubtitle>
+    <Row>
+        @foreach (var item in _movies)
+        {
+        <Column ColumnSize="ColumnSize.Is4.OnDesktop.IsThird.OnTablet.IsFull.OnMobile">
+            <Card>
+                <CardImage Source="@item.Info.ImageUrl" Alt="MovieImage" />
+                <CardBody>
+                    <CardTitle Size="5">@item.Title</CardTitle>
+                    <CardSubtitle>
+                        Released : @item.Year
+                        @{
+                            if (item.Info.Directors.Any())
+                            {
+                                var dirs = string.Join(", ", item.Info.Directors);
+                                <span>, Director(s) : @dirs</span>
+                            }
+                            if (item.Info.Actors.Any())
+                            {
+                                var acts = string.Join(", ", item.Info.Actors);
+                                <span>, Starring : @acts</span>
+                            }
+                        }
+                    </CardSubtitle>
 
-            </CardBody>
+                </CardBody>
 
-        </Card>
-    }
+            </Card>
+        </Column>
+        }
+    </Row>
 }
 
 
