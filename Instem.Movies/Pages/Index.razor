@@ -45,9 +45,23 @@ else
                                 var acts = string.Join(", ", item.Info.Actors);
                                 <span>, Starring : @acts</span>
                             }
+                            <span>, Rating: @item.Info.Rating</span>
+                            <span>, Year: @item.Year</span>
                         }
                     </CardSubtitle>
+                    <CardText>
+                        <div><strong>Plot : </strong>@item.Info.Plot</div>
+                        @{
+                            if (item.Info.Genres.Any())
+                            {
+                                var genres = string.Join(", ", item.Info.Genres);
+                                <div><strong>Genres : </strong>@genres</div>
+                            }
+                            <div><strong>Rank : @item.Info.Rank</strong></div>
+                            <div><strong>Release Date: @item.Info.ReleaseDate.ToLongDateString()</strong></div>
+                        }
 
+                    </CardText>
                 </CardBody>
 
             </Card>
