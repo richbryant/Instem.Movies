@@ -1,8 +1,12 @@
 ﻿@page "/"
 @using Instem.Movies.Data
 @using Instem.Movies.Shared.Model
+@using Instem.Movies.State
+@using Microsoft.AspNetCore.Components
 
 @inject IMovieDataService MovieData
+@inject NavigationManager NavManager
+@inject AppState  AppState
 
 <h1>Instem Movies App</h1>
 
@@ -27,9 +31,9 @@ else
     <Row>
         @foreach (var item in _movies)
         {
-        <Column ColumnSize="ColumnSize.IsThird.OnDesktop.IsThird.OnTablet.IsFull.OnMobile">
-            <MovieCard Data="item"/>
-        </Column>
+            <Column ColumnSize="ColumnSize.IsThird.OnDesktop.IsThird.OnTablet.IsFull.OnMobile">
+                <MovieCard Data="item" OnSelectMovie="SelectMovie" />
+            </Column>
         }
     </Row>
 }
@@ -39,7 +43,7 @@ else
 @code {
     readonly List<Movie> _movies = new List<Movie>();
 
-    public string Criteria {get;set;}
+    public string Criteria { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -54,4 +58,12 @@ else
         _movies.AddRange(m);
         this.StateHasChanged();
     }
+
+    private void SelectMovie(Movie data)
+    {
+        AppState.SetSelectedMovie(data);
+        NavManager.NavigateTo("showmovie");
+    }
+
+
 }

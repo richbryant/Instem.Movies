@@ -4,6 +4,7 @@ using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using Instem.Movies.Data;
+using Instem.Movies.State;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -45,8 +46,9 @@ namespace Instem.Movies
 
             services.AddTransient<IMovieDataService>(x =>
                 RestService.For<IMovieDataService>("https://localhost:44328/api", settings));
-            
-            
+            services.AddSingleton<AppState>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

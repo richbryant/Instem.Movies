@@ -1,8 +1,20 @@
-﻿@page "/showmovie/{item}"
+﻿@page "/showmovie"
+@using Instem.Movies.Shared.Model
+@using Instem.Movies.State
 
-
-<h3>ShowMovie</h3>
+@inject AppState  AppState
+<h3>@Data.Title</h3>
+<Column ColumnSize="ColumnSize.IsThird.OnDesktop.IsThird.OnTablet.IsFull.OnMobile">
+    <MovieCard Data="Data" />
+</Column>
 
 @code {
 
+    public Movie Data { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        Data = AppState.SelectedMovie;
+        return Task.CompletedTask;
+    }
 }
