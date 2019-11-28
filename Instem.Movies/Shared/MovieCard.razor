@@ -1,0 +1,48 @@
+﻿@using Instem.Movies.Shared.Model
+@using Microsoft.AspNetCore.Components
+
+
+<Card>
+    <CardImage Source="@Data.Info.ImageUrl" Alt="MovieImage" />
+    <CardBody>
+        <CardTitle Size="5">@Data.Title</CardTitle>
+        <CardSubtitle>
+            Released : @Data.Year
+            @{
+                if (Data.Info.Directors.Any())
+                {
+                    var dirs = string.Join(", ", Data.Info.Directors);
+                    <span>, Director(s) : @dirs</span>
+                }
+                if (Data.Info.Actors.Any())
+                {
+                    var acts = string.Join(", ", Data.Info.Actors);
+                    <span>, Starring : @acts</span>
+                }
+                <span>, Rating: @Data.Info.Rating</span>
+                <span>, Year: @Data.Year</span>
+            }
+        </CardSubtitle>
+        <CardText>
+            <div><strong>Plot : </strong>@Data.Info.Plot</div>
+            @{
+                if (Data.Info.Genres.Any())
+                {
+                    var genres = string.Join(", ", Data.Info.Genres);
+                    <div><strong>Genres : </strong>@genres</div>
+                }
+                <div><strong>Rank : @Data.Info.Rank</strong></div>
+                <div><strong>Release Date: @Data.Info.ReleaseDate.ToLongDateString()</strong></div>
+            }
+
+        </CardText>
+    </CardBody>
+
+</Card>
+
+
+@code {
+    [Parameter]
+    public Movie Data { get; set; }
+
+}

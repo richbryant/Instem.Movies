@@ -27,44 +27,8 @@ else
     <Row>
         @foreach (var item in _movies)
         {
-        <Column ColumnSize="ColumnSize.Is4.OnDesktop.IsThird.OnTablet.IsFull.OnMobile">
-            <Card>
-                <CardImage Source="@item.Info.ImageUrl" Alt="MovieImage" />
-                <CardBody>
-                    <CardTitle Size="5">@item.Title</CardTitle>
-                    <CardSubtitle>
-                        Released : @item.Year
-                        @{
-                            if (item.Info.Directors.Any())
-                            {
-                                var dirs = string.Join(", ", item.Info.Directors);
-                                <span>, Director(s) : @dirs</span>
-                            }
-                            if (item.Info.Actors.Any())
-                            {
-                                var acts = string.Join(", ", item.Info.Actors);
-                                <span>, Starring : @acts</span>
-                            }
-                            <span>, Rating: @item.Info.Rating</span>
-                            <span>, Year: @item.Year</span>
-                        }
-                    </CardSubtitle>
-                    <CardText>
-                        <div><strong>Plot : </strong>@item.Info.Plot</div>
-                        @{
-                            if (item.Info.Genres.Any())
-                            {
-                                var genres = string.Join(", ", item.Info.Genres);
-                                <div><strong>Genres : </strong>@genres</div>
-                            }
-                            <div><strong>Rank : @item.Info.Rank</strong></div>
-                            <div><strong>Release Date: @item.Info.ReleaseDate.ToLongDateString()</strong></div>
-                        }
-
-                    </CardText>
-                </CardBody>
-
-            </Card>
+        <Column ColumnSize="ColumnSize.IsThird.OnDesktop.IsThird.OnTablet.IsFull.OnMobile">
+            <MovieCard Data="item"/>
         </Column>
         }
     </Row>
