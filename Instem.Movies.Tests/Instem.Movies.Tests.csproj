@@ -31,4 +31,10 @@
     <ProjectReference Include="..\Instem.Movies.Shared\Instem.Movies.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestData\singleEntry.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

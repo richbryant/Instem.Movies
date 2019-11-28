@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using FluentAssertions;
@@ -20,6 +21,26 @@ namespace Instem.Movies.Tests
             loadedData.Should().BeOfType(typeof(List<Movie>));
             loadedData.Should().NotBeEmpty();
 
+        }
+
+        [Test]
+        public void LoadReducedSetTest()
+        {
+            var dataLocation = @"TestData\singleEntry.json";
+            var loader = new DataLoader(dataLocation);
+            var data = loader.SearchResults("Blade");
+
+            data.Should().BeOfType(typeof(List<Movie>));
+
+            var movie = data.FirstOrDefault();
+
+            movie.Should().NotBeNull();
+
+            movie.Info.Should().NotBeNull();
+
+            var item = movie.Info;
+
+            item.ImageUrl.Should().NotBeNull();
         }
 
         [Test]

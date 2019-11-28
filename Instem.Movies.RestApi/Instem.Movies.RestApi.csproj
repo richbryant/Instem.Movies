@@ -9,4 +9,10 @@
     <ProjectReference Include="..\Instem.Movies.Shared\Instem.Movies.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="moviedata.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

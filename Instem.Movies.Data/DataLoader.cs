@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Instem.Movies.Shared.Model;
@@ -12,11 +13,14 @@ namespace Instem.Movies.Data
     {
         private readonly string _dataLocation;
         private readonly JsonSerializerOptions _options;
-
+        
         public DataLoader(string dataLocation)
         {
             _dataLocation = dataLocation;
-            _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            _options = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            };
         }
 
         public List<Movie> Load()

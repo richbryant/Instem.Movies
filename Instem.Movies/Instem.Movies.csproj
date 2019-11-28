@@ -10,6 +10,7 @@
     <PackageReference Include="LanguageExt.Core" Version="3.3.40" />
     <PackageReference Include="Refit" Version="5.0.23" />
     <PackageReference Include="Refit.HttpClientFactory" Version="5.0.23" />
+    <PackageReference Include="System.Text.Json" Version="4.7.0-preview3.19551.4" />
   </ItemGroup>
 
   <ItemGroup>

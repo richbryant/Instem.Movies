@@ -1,15 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text.Json;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using Instem.Movies.Data;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,15 +26,27 @@ namespace Instem.Movies
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var options = new JsonSerializerOptions()
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                WriteIndented = true,
+            };
+
+            var settings = new RefitSettings()
+            {
+                ContentSerializer = new SystemTextJsonContentSerializer(options)
+            };
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddBlazorise(o => o.ChangeTextOnKeyPress = true)
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();
 
-            services.AddRefitClient<IMovieDataService>()
-                .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:44328/api"));
-            //services.AddSingleton<WeatherForecastService>();
+            services.AddTransient<IMovieDataService>(x =>
+                RestService.For<IMovieDataService>("https://localhost:44328/api", settings));
+            
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
