@@ -34,6 +34,18 @@ namespace Instem.Movies.Data
             return list;
         }
 
+        public async Task<List<Movie>> LoadAsync()
+        {
+            var list = new List<Movie>();
+            using (var sr = new StreamReader(_dataLocation))
+            {
+                var data = await sr.ReadToEndAsync();
+                var m = JsonSerializer.Deserialize<List<Movie>>(data, _options);
+                list.AddRange(m);
+            }
+            return list;
+        }
+
         public List<Movie> LoadHomePageSelection()
         {
             var list = new List<Movie>();
@@ -44,7 +56,10 @@ namespace Instem.Movies.Data
 
         public async Task<List<Movie>> LoadHomePageSelectionAsync()
         {
-            return await Task.FromResult(LoadHomePageSelection());
+            var list = new List<Movie>();
+            var movies = await LoadAsync(); 
+            list.AddRange(movies.OrderByDescending(y => y.Year).Take(4));
+            return list;
         }
 
         public List<Movie> SearchResults(string criteria)
@@ -52,31 +67,31 @@ namespace Instem.Movies.Data
             var list = Load();
             var result = new List<Movie>();
 
-            if (int.TryParse(criteria, out var year))
-            {
-                var searchYear = list.Where(m => m.Year == year).ToList();
-                result.AddRange(searchYear);
-            }
+            if (int.TryParse(criteria, out var year)) result.AddRange(list.Where(m => m.Year == year));
 
-            var searchTitle = list.Where(m => m.Title.Contains(criteria)).ToList();
-            var searchDirector = list.Where(m => m.Info.Directors.Any(d => d.Contains(criteria))).ToList();
-            var searchGenres = list.Where(m => m.Info.Genres.Any(g => g.Contains(criteria))).ToList();
-            var searchActors = list.Where(m => m.Info.Actors.Any(a => a.Contains(criteria))).ToList();
-            var searchPlot = list.Where(m => m.Info.Plot.Contains(criteria)).ToList();
+            result.AddRange(list.Where(m => m.Title.Contains(criteria)));
+            result.AddRange(list.Where(m => m.Info.Directors.Any(d => d.Contains(criteria))));
+            result.AddRange(list.Where(m => m.Info.Genres.Any(g => g.Contains(criteria))));
+            result.AddRange(list.Where(m => m.Info.Actors.Any(a => a.Contains(criteria))));
+            result.AddRange(list.Where(m => m.Info.Plot.Contains(criteria)));
 
-            
-            result.AddRange(searchTitle);
-            result.AddRange(searchDirector);
-            result.AddRange(searchGenres);
-            result.AddRange(searchActors);
-            result.AddRange(searchPlot);
-
-            return result;
+            return result.Distinct().ToList();
         }
 
         public async Task<List<Movie>> SearchResultsAsync(string criteria)
         {
-            return await Task.FromResult(SearchResults(criteria));
+            var list = await LoadAsync();
+            var result = new List<Movie>();
+
+            if (int.TryParse(criteria, out var year)) result.AddRange(list.Where(m => m.Year == year));
+
+            result.AddRange(list.Where(m => m.Title.Contains(criteria)));
+            result.AddRange(list.Where(m => m.Info.Directors.Any(d => d.Contains(criteria))));
+            result.AddRange(list.Where(m => m.Info.Genres.Any(g => g.Contains(criteria))));
+            result.AddRange(list.Where(m => m.Info.Actors.Any(a => a.Contains(criteria))));
+            result.AddRange(list.Where(m => m.Info.Plot.Contains(criteria)));
+
+            return result.Distinct().ToList();
         }
     }
 }
