@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Instem.Movies.Shared", "Ins
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Instem.Movies.Data", "Instem.Movies.Data\Instem.Movies.Data.csproj", "{2D6A6D52-268F-4629-9C5D-771A7F0F56C5}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Instem.Moves.SqlServer", "Instem.Moves.SqlServer\Instem.Moves.SqlServer.sqlproj", "{00233B4A-3623-4660-807A-EB8BDCD3B078}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,12 @@ Global
 		{2D6A6D52-268F-4629-9C5D-771A7F0F56C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D6A6D52-268F-4629-9C5D-771A7F0F56C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D6A6D52-268F-4629-9C5D-771A7F0F56C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00233B4A-3623-4660-807A-EB8BDCD3B078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00233B4A-3623-4660-807A-EB8BDCD3B078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00233B4A-3623-4660-807A-EB8BDCD3B078}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{00233B4A-3623-4660-807A-EB8BDCD3B078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00233B4A-3623-4660-807A-EB8BDCD3B078}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00233B4A-3623-4660-807A-EB8BDCD3B078}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
